@@ -1,0 +1,37 @@
+[user]
+  name = Mateus Klein
+  email = mateuslkgouvea@hotmail.com
+  signingkey = ~/.ssh/id_ed25519_gh_sign.pub
+
+[init]
+  defaultBranch = main
+
+[core]
+  editor = nvim
+  autocrlf = input
+
+[color]
+  ui = auto
+
+[pull]
+  rebase = true
+
+[help]
+  autocorrect = 1
+
+[alias]
+  st = status
+  co = checkout
+  br = branch
+  ci = commit
+  lg = log --oneline --graph --decorate --all
+
+[commit]
+  gpgsign = true
+
+[gpg]
+  format = ssh
+
+# Organização por contexto (ex: trabalho)
+# [includeIf "gitdir:~/work/"]
+#   path = ~/.config/git/config-work
