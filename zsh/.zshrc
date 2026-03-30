@@ -1,9 +1,9 @@
 export PATH="/opt/homebrew/bin:$PATH"
+export EDITOR=nvim
 
 # pyenv setup
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-eval "$(pyenv init --path)"
+export PATH="$HOME/.pyenv/bin:$PATH"
+eval "$(pyenv init -)"
 
 # Aliases
 alias python='python3'
@@ -23,6 +23,16 @@ fi
 eval "$(starship init zsh)"
 
 # Plugins
-source $ZSH_PLUGIN_DIR/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
-source $ZSH_PLUGIN_DIR/zsh-autosuggestions/zsh-autosuggestions.zsh
+
+if [ -n "$ZSH_PLUGIN_DIR" ] && [ -d "$ZSH_PLUGIN_DIR" ]; then
+  plugins=(
+    zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+    zsh-autosuggestions/zsh-autosuggestions.zsh
+  )
+
+  for plugin in "${plugins[@]}"; do
+    file="$ZSH_PLUGIN_DIR/$plugin"
+    [ -f "$file" ] && source "$file"
+  done
+fi
 

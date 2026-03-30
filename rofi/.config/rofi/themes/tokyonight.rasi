@@ -1,0 +1,128 @@
+* {
+    bg:             #1a1b26ee;
+    bg-alt:         #24283bee;
+    fg:             #c0caf5;
+    fg-alt:         #a9b1d6;
+    border:         #414868;
+    selected:       #7aa2f7;
+    selected-fg:    #1a1b26;
+    urgent:         #f7768e;
+    good:           #9ece6a;
+
+    background-color: transparent;
+    text-color: @fg;
+    font: "JetBrainsMono Nerd Font 12";
+}
+
+window {
+    width: 22%;
+    location: center;
+    anchor: center;
+    fullscreen: false;
+    transparency: "real";
+    background-color: @bg;
+    border: 2px;
+    border-color: @border;
+    border-radius: 18px;
+    padding: 22px;
+}
+
+mainbox {
+    background-color: transparent;
+    spacing: 16px;
+    children: [ "inputbar", "message", "listview", "mode-switcher" ];
+}
+
+inputbar {
+    background-color: @bg-alt;
+    border-color: @border;
+    border: 0px;
+    border-radius: 14px;
+    padding: 14px 16px;
+    spacing: 12px;
+    children: [ "prompt", "entry" ];
+}
+
+prompt {
+    enabled: true;
+    background-color: transparent;
+    text-color: @selected;
+    font: "JetBrainsMono Nerd Font Bold 12";
+}
+
+entry {
+    background-color: transparent;
+    text-color: @fg;
+    placeholder: "Search apps, commands, windows...";
+    placeholder-color: @fg-alt;
+    expand: true;
+}
+
+message {
+    enabled: false;
+}
+
+listview {
+    lines: 10;
+    columns: 1;
+    fixed-height: false;
+    dynamic: true;
+    scrollbar: false;
+    cycle: true;
+    spacing: 8px;
+    background-color: transparent;
+}
+
+element {
+    background-color: transparent;
+    text-color: @fg;
+    orientation: horizontal;
+    border-radius: 12px;
+    padding: 12px;
+    spacing: 12px;
+}
+
+element normal.normal {
+    background-color: transparent;
+    text-color: @fg;
+}
+
+element selected.normal {
+    background-color: @selected;
+    text-color: @selected-fg;
+}
+
+element selected.urgent {
+    background-color: @urgent;
+    text-color: @selected-fg;
+}
+
+element-icon {
+    background-color: transparent;
+    size: 36px;
+    vertical-align: 0.5;
+}
+
+element-text {
+    background-color: transparent;
+    text-color: inherit;
+    vertical-align: 0.5;
+    highlight: none;
+}
+
+mode-switcher {
+    background-color: transparent;
+    spacing: 10px;
+}
+
+button {
+    padding: 10px 14px;
+    border-radius: 12px;
+    background-color: @bg-alt;
+    text-color: @fg-alt;
+}
+
+button selected {
+    background-color: @selected;
+    text-color: @selected-fg;
+}
