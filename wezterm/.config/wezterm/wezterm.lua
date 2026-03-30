@@ -10,7 +10,7 @@ config = {
 	color_scheme = "Tokyo Night Moon",
 	enable_tab_bar = false,
 	window_decorations = "RESIZE",
-	window_background_opacity = 0.97,
+	window_background_opacity = 0.93,
 	macos_window_background_blur = 10,
 }
 
