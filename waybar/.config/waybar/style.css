@@ -27,6 +27,17 @@ window#waybar {
   background: #2e3c64;
 }
 
+#window {
+  padding: 0 8px;
+  color: #1a1b26;
+  background: #7aa2f7;
+  border-radius: 6px;
+}
+
+#window.empty {
+  opacity: 0.5;
+}
+
 #clock {
   color: #bb9af7;
   font-weight: bold;
@@ -38,6 +49,10 @@ window#waybar {
 
 #memory {
   color: #9ece6a;
+}
+
+#bluetooth {
+  color: #ff9e64;
 }
 
 #network {

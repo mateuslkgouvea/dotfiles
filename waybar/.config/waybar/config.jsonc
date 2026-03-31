@@ -4,9 +4,9 @@
   "height": 32,
   "spacing": 6,
 
-  "modules-left": ["hyprland/workspaces"],
+  "modules-left": ["hyprland/workspaces", "hyprland/window"],
   "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "network", "cpu", "memory", "battery", "tray"],
+  "modules-right": ["pulseaudio", "bluetooth", "network", "cpu", "memory", "battery", "tray"],
 
   "clock": {
     "format": "  {:%H:%M}",
@@ -15,7 +15,8 @@
 
   "cpu": {
     "format": "  {usage}%",
-    "interval": 5
+    "interval": 5, 
+    "on-click": "kitty btop"
   },
 
   "memory": {
@@ -23,11 +24,21 @@
     "interval": 5
   },
 
+  "bluetooth": {
+    "format": " {status}",
+    "format-disabled": " off",
+    "format-connected": " {device_alias}",
+    "format-connected-battery": " {device_alias} {device_battery_percentage}%",
+    "tooltip-format": "{controller_alias}\t{controller_address}",
+    "on-click": "kitty --class float-helper bluetuith"
+  },
+
   "network": {
     "format-wifi": "  {essid}",
     "format-ethernet": "󰈀  Wired",
     "format-disconnected": "⚠ Disconnected",
-    "tooltip-format": "{ipaddr}"
+    "tooltip-format": "{ipaddr}",
+    "on-click": "kitty --class float-helper impala"
   },
 
   "pulseaudio": {
@@ -47,5 +58,20 @@
   "hyprland/workspaces": {
     "format": "{name}",
     "on-click": "activate"
+  },
+
+  "hyprland/window": {
+    "format": "{}",
+    "rewrite": {
+      "(.*) — Zen Browser": "  $1",
+      "(.*) - Chromium": "  $1",
+      "(.*) on QEMU/KVM": "  $1",
+      "Spotify Premium":"󰓇 ",
+      "web.whatsapp.com":"󰖣 ",
+      "nvim": " ",
+      "tmux": " ",
+    },
+  "separate-outputs": true
   }
 }
+
