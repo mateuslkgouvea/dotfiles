@@ -13,6 +13,7 @@ alias lzg='lazygit'
 alias vim='nvim'
 alias nvc='NVIM_APPNAME=nvchad nvim'
 alias lzv='NVIM_APPNAME=lazyvim nvim'
+alias ghd='gh dash'
 
 # Variables
 if [ -f "$HOME/.zshvars" ]; then
