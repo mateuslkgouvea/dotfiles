@@ -1,0 +1,143 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+APP_DIR="${HOME}/.local/share/applications"
+ICON_DIR="${HOME}/.local/share/icons/webapps"
+DATA_DIR="${HOME}/.local/share/webapps"
+
+mkdir -p "$APP_DIR" "$ICON_DIR" "$DATA_DIR"
+
+pick_browser() {
+  if [[ -n "${WEBAPP_BROWSER:-}" ]] && command -v "$WEBAPP_BROWSER" >/dev/null 2>&1; then
+    printf '%s\n' "$WEBAPP_BROWSER"
+    return
+  fi
+
+  local candidates=(
+    chromium
+    chromium-browser
+    google-chrome-stable
+    google-chrome
+    brave-browser
+    microsoft-edge-stable
+    microsoft-edge
+    vivaldi-stable
+    vivaldi
+  )
+
+  local b
+  for b in "${candidates[@]}"; do
+    if command -v "$b" >/dev/null 2>&1; then
+      printf '%s\n' "$b"
+      return
+    fi
+  done
+
+  echo "No supported Chromium-based browser found." >&2
+  echo "Install one, or set WEBAPP_BROWSER manually." >&2
+  exit 1
+}
+
+slugify() {
+  printf '%s' "$1" |
+    tr '[:upper:]' '[:lower:]' |
+    sed -E 's/[^a-z0-9]+/-/g; s/^-+//; s/-+$//'
+}
+
+download_icon() {
+  local url="$1"
+  local out="$2"
+
+  [[ -z "$url" ]] && return 0
+
+  if command -v curl >/dev/null 2>&1; then
+    curl -LfsS "$url" -o "$out"
+  elif command -v wget >/dev/null 2>&1; then
+    wget -qO "$out" "$url"
+  else
+    echo "Neither curl nor wget is installed, cannot download icon." >&2
+    return 1
+  fi
+}
+
+main() {
+  local name url icon_url browser slug desktop_file profile_dir icon_file icon_ext
+
+  read -rp "App name: " name
+  read -rp "URL: " url
+
+  echo
+  echo "Search for an icon:"
+  echo "https://dashboardicons.com/search?q=$(printf '%s' "$name" | sed 's/ /+/g')"
+  echo
+
+  read -rp "Icon URL (optional): " icon_url
+
+  [[ -z "$name" ]] && {
+    echo "App name is required."
+    exit 1
+  }
+  [[ -z "$url" ]] && {
+    echo "URL is required."
+    exit 1
+  }
+
+  browser="$(pick_browser)"
+  slug="$(slugify "$name")"
+
+  [[ -z "$slug" ]] && {
+    echo "Could not generate a valid app id."
+    exit 1
+  }
+
+  profile_dir="${DATA_DIR}/${slug}"
+  mkdir -p "$profile_dir"
+
+  icon_file=""
+  if [[ -n "$icon_url" ]]; then
+    icon_ext="${icon_url##*.}"
+    icon_ext="${icon_ext%%\?*}"
+
+    case "$icon_ext" in
+    png | svg | jpg | jpeg | webp | ico) ;;
+    *) icon_ext="png" ;;
+    esac
+
+    icon_file="${ICON_DIR}/${slug}.${icon_ext}"
+    download_icon "$icon_url" "$icon_file" || true
+  fi
+
+  desktop_file="${APP_DIR}/${slug}.desktop"
+
+  cat >"$desktop_file" <<EOF
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=${name}
+Comment=Web app for ${name}
+Exec=${browser} --app="${url}" --name="${slug}" --class="${slug}" --user-data-dir="${profile_dir}"
+Terminal=false
+Categories=Network;WebBrowser;
+StartupNotify=true
+StartupWMClass=${slug}
+EOF
+
+  if [[ -n "$icon_file" && -f "$icon_file" ]]; then
+    printf 'Icon=%s\n' "$icon_file" >>"$desktop_file"
+  fi
+
+  chmod +x "$desktop_file"
+
+  if command -v update-desktop-database >/dev/null 2>&1; then
+    update-desktop-database "$APP_DIR" >/dev/null 2>&1 || true
+  fi
+
+  echo
+  echo "Created: $desktop_file"
+  [[ -n "$icon_file" && -f "$icon_file" ]] && echo "Icon:    $icon_file"
+  echo "Browser: $browser"
+  echo
+  echo "You can now launch it from your app launcher."
+}
+
+main "$@"
