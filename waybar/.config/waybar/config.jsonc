@@ -3,27 +3,47 @@
   "position": "top",
   "height": 32,
   "spacing": 6,
-
-  "modules-left": ["hyprland/workspaces", "hyprland/window"],
-  "modules-center": ["clock"],
-  "modules-right": ["pulseaudio", "bluetooth", "network", "cpu", "memory", "battery", "tray"],
-
+  "modules-left": [
+    "custom/menu",
+    "hyprland/workspaces",
+    "hyprland/window"
+  ],
+  "modules-center": [
+    "clock"
+  ],
+  "modules-right": [
+    "pulseaudio",
+    "bluetooth",
+    "network",
+    "cpu",
+    "memory",
+    "battery",
+    "tray"
+  ],
+  "custom/menu": {
+    "format": "  󰣇  ",
+    "menu": "on-click",
+    "menu-file": "$HOME/.config/waybar/menu.xml",
+    "menu-actions": {
+      "entry1": "kitty --class float-helper arch-install --aur",
+      "entry2": "kitty --class float-helper arch-install --pacman",
+      "entry3": "kitty --class float-helper webapp-install"
+    }
+  },
   "clock": {
     "format": "  {:%H:%M}",
     "tooltip-format": "{:%A, %d %B %Y}"
   },
-
   "cpu": {
     "format": "  {usage}%",
-    "interval": 5, 
-    "on-click": "kitty btop"
+    "interval": 5,
+    "on-click": "kitty --class float-helper-big btop"
   },
-
   "memory": {
     "format": "  {}%",
-    "interval": 5
+    "interval": 5,
+    "on-click": "kitty --class float-helper-big btop"
   },
-
   "bluetooth": {
     "format": " {status}",
     "format-disabled": " off",
@@ -32,7 +52,6 @@
     "tooltip-format": "{controller_alias}\t{controller_address}",
     "on-click": "kitty --class float-helper bluetuith"
   },
-
   "network": {
     "format-wifi": "  {essid}",
     "format-ethernet": "󰈀  Wired",
@@ -40,38 +59,32 @@
     "tooltip-format": "{ipaddr}",
     "on-click": "kitty --class float-helper impala"
   },
-
   "pulseaudio": {
-  "format": "  {volume}%",
+    "format": "  {volume}%",
     "format-muted": "  Muted"
   },
-
   "battery": {
     "format": "  {capacity}%",
     "format-charging": " {capacity}%"
   },
-
   "tray": {
     "spacing": 10
   },
-
   "hyprland/workspaces": {
     "format": "{name}",
     "on-click": "activate"
   },
-
   "hyprland/window": {
     "format": "{}",
     "rewrite": {
       "(.*) — Zen Browser": "  $1",
       "(.*) - Chromium": "  $1",
       "(.*) on QEMU/KVM": "  $1",
-      "Spotify Premium":"󰓇 ",
-      "web.whatsapp.com":"󰖣 ",
+      "Spotify Premium": "󰓇 ",
+      "web.whatsapp.com": "󰖣 ",
       "nvim": " ",
       "tmux": " ",
     },
-  "separate-outputs": true
+    "separate-outputs": true
   }
 }
-

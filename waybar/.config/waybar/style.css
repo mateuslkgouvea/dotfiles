@@ -43,6 +43,10 @@ window#waybar {
   font-weight: bold;
 }
 
+#menu {
+  color: #7dcfff;
+}
+
 #cpu {
   color: #7dcfff;
 }

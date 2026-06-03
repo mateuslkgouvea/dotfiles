@@ -68,7 +68,7 @@ main() {
 
   echo
   echo "Search for an icon:"
-  echo "https://dashboardicons.com/search?q=$(printf '%s' "$name" | sed 's/ /+/g')"
+  echo "https://dashboardicons.com/icons?q=$(printf '%s' "$name" | sed 's/ /+/g')"
   echo
 
   read -rp "Icon URL (optional): " icon_url

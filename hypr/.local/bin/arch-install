@@ -1,0 +1,47 @@
+#!/usr/bin/env bash
+
+# Exit if fzf is not installed
+if ! command -v fzf &>/dev/null; then
+  echo "Error: fzf is required but not installed." >&2
+  exit 1
+fi
+
+case "$1" in
+--pacman)
+  # Check if pacman is available
+  command -v pacman &>/dev/null || {
+    echo "Error: pacman not found."
+    exit 1
+  }
+
+  # List pacman sync database, preview with pacman -Si, install with sudo pacman -S
+  pacman -Sl | awk '{print $2}' | fzf --multi \
+    --preview 'pacman -Si {1}' \
+    --preview-window=right:50%:wrap \
+    --prompt="Search Pacman Repos > " | xargs -ro sudo pacman -S
+  ;;
+
+--aur)
+  # Check if yay is available
+  command -v yay &>/dev/null || {
+    echo "Error: yay not found."
+    exit 1
+  }
+
+  # List AUR database, preview with yay -Si, install with yay -S
+  yay -Slq | fzf --multi \
+    --preview 'yay -Si {1}' \
+    --preview-window=right:50%:wrap \
+    --prompt="Search AUR > " | xargs -ro yay -S
+  ;;
+
+*)
+  # Help text if flags are missing or wrong
+  echo "Usage: arch-install [OPTION]"
+  echo ""
+  echo "Options:"
+  echo "  --pacman    Interactively search and install from official repositories"
+  echo "  --aur       Interactively search and install from the AUR"
+  exit 1
+  ;;
+esac

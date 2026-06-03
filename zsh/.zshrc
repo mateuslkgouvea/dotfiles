@@ -1,4 +1,5 @@
 export PATH="/opt/homebrew/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 export EDITOR=nvim
 
 # pyenv setup
@@ -36,4 +37,3 @@ if [ -n "$ZSH_PLUGIN_DIR" ] && [ -d "$ZSH_PLUGIN_DIR" ]; then
     [ -f "$file" ] && source "$file"
   done
 fi
-
