@@ -1,0 +1,49 @@
+[font]
+normal = { family = "JetBrainsMonoNL Nerd Font", style = "Regular" }
+bold = { family = "JetBrainsMonoNL Nerd Font", style = "Bold" }
+italic = { family = "JetBrainsMonoNL Nerd Font", style = "Italic" }
+bold_italic = { family = "JetBrainsMonoNL Nerd Font", style = "Bold Italic" }
+size = 16.0
+
+[window]
+opacity = 0.97
+blur = true
+decorations = "Buttonless"
+
+[window.padding]
+x = 12
+y = 12
+
+[colors]
+# Tokyo Night Moon
+[colors.primary]
+background = "#222436"
+foreground = "#c8d3f5"
+
+[colors.cursor]
+text = "#222436"
+cursor = "#c8d3f5"
+
+[colors.selection]
+text = "CellForeground"
+background = "#2d3f76"
+
+[colors.normal]
+black = "#1b1d2b"
+red = "#ff757f"
+green = "#c3e88d"
+yellow = "#ffc777"
+blue = "#82aaff"
+magenta = "#c099ff"
+cyan = "#86e1fc"
+white = "#828bb8"
+
+[colors.bright]
+black = "#444a73"
+red = "#ff757f"
+green = "#c3e88d"
+yellow = "#ffc777"
+blue = "#82aaff"
+magenta = "#c099ff"
+cyan = "#86e1fc"
+white = "#c8d3f5"
