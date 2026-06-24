@@ -6,6 +6,8 @@ export EDITOR=nvim
 export PATH="$HOME/.pyenv/bin:$PATH"
 eval "$(pyenv init -)"
 
+eval "$(zoxide init zsh)"
+
 # Aliases
 alias python='python3'
 alias pip=pip3
@@ -14,6 +16,7 @@ alias lzg='lazygit'
 alias vim='nvim'
 alias nvc='NVIM_APPNAME=nvchad nvim'
 alias lzv='NVIM_APPNAME=lazyvim nvim'
+alias asv='NVIM_APPNAME=astronvim nvim'
 alias ghd='gh dash'
 
 # Variables
