@@ -13,11 +13,14 @@ alias python='python3'
 alias pip=pip3
 alias lzd='lazydocker'
 alias lzg='lazygit'
+# Neovim
 alias vim='nvim'
 alias nvc='NVIM_APPNAME=nvchad nvim'
 alias lzv='NVIM_APPNAME=lazyvim nvim'
 alias asv='NVIM_APPNAME=astronvim nvim'
+# Misc
 alias ghd='gh dash'
+alias pgdev='PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres'
 
 # Variables
 if [ -f "$HOME/.zshvars" ]; then
