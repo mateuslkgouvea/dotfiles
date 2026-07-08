@@ -25,9 +25,9 @@
     "menu": "on-click",
     "menu-file": "$HOME/.config/waybar/menu.xml",
     "menu-actions": {
-      "entry1": "kitty --class float-helper arch-install --aur",
-      "entry2": "kitty --class float-helper arch-install --pacman",
-      "entry3": "kitty --class float-helper webapp-install"
+      "entry1": "alacritty --class float-helper -e arch-install --aur",
+      "entry2": "alacritty --class float-helper -e  arch-install --pacman",
+      "entry3": "alacritty --class float-helper -e webapp-install"
     }
   },
   "clock": {
@@ -37,12 +37,12 @@
   "cpu": {
     "format": "  {usage}%",
     "interval": 5,
-    "on-click": "kitty --class float-helper-big btop"
+    "on-click": "alacritty --class float-helper-big -e btop"
   },
   "memory": {
     "format": "  {}%",
     "interval": 5,
-    "on-click": "kitty --class float-helper-big btop"
+    "on-click": "alacritty --class float-helper-big -e btop"
   },
   "bluetooth": {
     "format": " {status}",
@@ -50,14 +50,14 @@
     "format-connected": " {device_alias}",
     "format-connected-battery": " {device_alias} {device_battery_percentage}%",
     "tooltip-format": "{controller_alias}\t{controller_address}",
-    "on-click": "kitty --class float-helper bluetuith"
+    "on-click": "alacritty --class float-helper -e bluetuith"
   },
   "network": {
     "format-wifi": "  {essid}",
     "format-ethernet": "󰈀  Wired",
     "format-disconnected": "⚠ Disconnected",
     "tooltip-format": "{ipaddr}",
-    "on-click": "kitty --class float-helper impala"
+    "on-click": "alacritty --class float-helper -e impala"
   },
   "pulseaudio": {
     "format": "  {volume}%",
@@ -84,6 +84,7 @@
       "web.whatsapp.com": "󰖣 ",
       "nvim": " ",
       "tmux": " ",
+      "alacritty": " "
     },
     "separate-outputs": true
   }
