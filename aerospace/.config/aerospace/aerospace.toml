@@ -69,7 +69,7 @@ alt-shift-9 = ['move-node-to-workspace 9', 'workspace 9']
 
 # Apps
 # AI
-alt-a = ['exec-and-forget open -a "ChatGPT"']
+alt-a = ['exec-and-forget open -a "Claude"']
 # Browser
 alt-b = ['exec-and-forget open -a "Zen"']
 # Chat
@@ -99,7 +99,6 @@ alt-shift-tab = 'move-workspace-to-monitor --wrap-around next'
 
 # Modes
 alt-shift-semicolon = 'mode service'
-alt-shift-a = 'mode ai'
 
 # 'service' binding mode declaration.
 [mode.service.binding]
@@ -123,15 +122,6 @@ alt-shift-l = ['join-with right', 'mode main']
 down = 'volume down'
 up = 'volume up'
 shift-down = ['volume set 0', 'mode main']
-
-[mode.ai.binding]
-esc = ['mode main']
-
-c = ['exec-and-forget open -a "Claude"', 'mode main']
-d = ['exec-and-forget open -a "DeepSeek"', 'mode main']
-g = ['exec-and-forget open -a "Gemini"', 'mode main']
-o = ['exec-and-forget open -a "ChatGPT"', 'mode main']
-k = ['exec-and-forget open -a "Grok"', 'mode main']
 
 ### Always floating windows ###
 [[on-window-detected]]
