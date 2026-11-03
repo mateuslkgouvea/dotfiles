@@ -1,0 +1,12 @@
+-- Plugin modules are loaded in dependency order.
+require('plugins.manager')
+require('plugins.tmux')
+require('plugins.ui')
+require('plugins.navigation')
+require('plugins.tabiew')
+require('plugins.bigquery')
+require('plugins.lsp')
+require('plugins.formatting')
+require('plugins.completion')
+require('plugins.treesitter')
+require('plugins.core')

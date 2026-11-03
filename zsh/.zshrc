@@ -21,6 +21,15 @@ alias asv='NVIM_APPNAME=astronvim nvim'
 alias ghd='gh dash'
 alias pgdev='PGPASSWORD=postgres psql -h localhost -p 5432 -U postgres'
 
+alias ha='docker run -d \
+  --name homeassistant \
+  --privileged \
+  --restart=unless-stopped \
+  -p 8123:8123 \
+  -v homeassistant_config:/config \
+  -e TZ=America/Sao_Paulo \
+  homeassistant/home-assistant:stable'
+
 # Variables
 if [ -f "$HOME/.zshvars" ]; then
   source "$HOME/.zshvars"
@@ -42,3 +51,10 @@ if [ -n "$ZSH_PLUGIN_DIR" ] && [ -d "$ZSH_PLUGIN_DIR" ]; then
     [ -f "$file" ] && source "$file"
   done
 fi
+
+# cre
+export CRE_INSTALL="$HOME/.cre"
+export PATH="$CRE_INSTALL/bin:$PATH"
+
+
+
